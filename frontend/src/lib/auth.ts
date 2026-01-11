@@ -1,4 +1,3 @@
 export const authConfig = {
-    providers: ["google", "apple"]
-  };
-  
+  providers: ['google', 'apple'],
+}

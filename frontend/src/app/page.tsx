@@ -1,7 +1,8 @@
-"use client";
+'use client'
 
-import InstallButton from "@/components/InstallButton";
-import { signIn } from "next-auth/react";
+import { signIn } from 'next-auth/react'
+
+import InstallButton from '@/components/InstallButton'
 
 export default function Home() {
   return (
@@ -17,5 +18,5 @@ export default function Home() {
       </button>
       <InstallButton />
     </main>
-  );
+  )
 }

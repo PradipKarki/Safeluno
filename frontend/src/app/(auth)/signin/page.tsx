@@ -1,19 +1,19 @@
-"use client";
+'use client'
 
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 
 export default function SignIn() {
-  const router = useRouter();
+  const router = useRouter()
 
   async function loginTestUser() {
-    const res = await signIn("credentials", {
-      username: "Test User",
+    const res = await signIn('credentials', {
+      username: 'Test User',
       redirect: false,
-    });
+    })
 
     if (res?.ok) {
-      router.push("/dashboard");
+      router.push('/dashboard')
     }
   }
 
@@ -29,18 +29,18 @@ export default function SignIn() {
       </button>
 
       <button
-        onClick={() => signIn("google")}
+        onClick={() => signIn('google')}
         className="px-4 py-2 bg-blue-600 text-white rounded"
       >
         Sign in with Google
       </button>
 
       <button
-        onClick={() => signIn("apple")}
+        onClick={() => signIn('apple')}
         className="px-4 py-2 bg-black text-white rounded"
       >
         Sign in with Apple
       </button>
     </div>
-  );
+  )
 }

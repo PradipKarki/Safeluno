@@ -27,49 +27,47 @@
 
 // export { handler as GET, handler as POST };
 
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import type { Session } from 'next-auth'
+import NextAuth from 'next-auth'
+import type { JWT } from 'next-auth/jwt'
+import CredentialsProvider from 'next-auth/providers/credentials'
 
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
-      name: "Test Login",
+      name: 'Test Login',
       credentials: {
-        username: { label: "Username", type: "text" }
+        username: { label: 'Username', type: 'text' },
       },
       async authorize(credentials) {
         // Always return a fake user for testing
-        return { id: "1", name: credentials?.username || "Test User" };
-      }
-    })
+        return { id: '1', name: credentials?.username || 'Test User' }
+      },
+    }),
   ],
 
-  session: { strategy: "jwt" },
+  session: { strategy: 'jwt' },
 
   callbacks: {
-    // Attach user to JWT
-    async jwt({ token, user }) {
-      if (user) token.user = user;
-      return token;
+    async jwt({ token, user }: { token: JWT; user?: any }) {
+      if (user) token.user = user
+      return token
     },
-
-    // Expose user in session
-    async session({ session, token }) {
-      session.user = token.user;
-      return session;
+    async session({ session, token }: { session: Session; token: JWT }) {
+      if (token.user) {
+        session.user = {
+          ...session.user,
+          ...token.user,
+        }
+      }
+      return session
     },
-
-    // This makes middleware actually protect routes
-    authorized({ token }) {
-      return !!token;
-    }
   },
 
   pages: {
-    signIn: "/signin",
-    signOut: "/", // redirect after logout
-  }
-});
+    signIn: '/signin',
+    signOut: '/',
+  },
+})
 
-export { handler as GET, handler as POST };
-
+export { handler as GET, handler as POST }

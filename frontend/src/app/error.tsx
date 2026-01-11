@@ -1,10 +1,17 @@
-"use client";
+'use client'
 
-export default function GlobalError({ error, reset }: { error: Error; reset: () => void }) {
+export default function GlobalError({
+  reset,
+}: {
+  error: Error
+  reset: () => void
+}) {
   return (
     <html>
       <body className="p-10">
-        <h1 className="text-2xl font-bold text-red-600">Something went wrong</h1>
+        <h1 className="text-2xl font-bold text-red-600">
+          Something went wrong
+        </h1>
         <p className="mt-2 text-gray-700">
           We hit an unexpected issue. Try again or return to the dashboard.
         </p>
@@ -17,5 +24,5 @@ export default function GlobalError({ error, reset }: { error: Error; reset: () 
         </button>
       </body>
     </html>
-  );
+  )
 }

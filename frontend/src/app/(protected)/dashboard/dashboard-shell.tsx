@@ -1,17 +1,24 @@
-"use client";
+'use client'
 
-import Sidebar from "@/components/Sidebar";
-import Navbar from "@/components/Navbar";
-import { Session } from "next-auth";
+import { Session, User } from 'next-auth'
 
-export default function DashboardShell({ children, session }: { children: React.ReactNode; session: Session }) {
+import Navbar from '@/components/Navbar'
+import Sidebar from '@/components/Sidebar'
+
+export default function DashboardShell({
+  children,
+  session,
+}: {
+  children: React.ReactNode
+  session: Session
+}) {
   return (
     <div className="flex h-screen">
-      <Sidebar user={session.user} />
+      <Sidebar />
       <div className="flex flex-col flex-1">
-        <Navbar user={session.user} />
+        <Navbar user={session.user as User} />
         <main className="p-6">{children}</main>
       </div>
     </div>
-  );
+  )
 }
