@@ -1,14 +1,17 @@
 import './globals.css'
 
-export const metadata = {
+import type { Metadata, Viewport } from 'next'
+
+export const metadata: Metadata = {
   title: 'Safeluno',
   description: 'Your secure digital vault.',
-  themeColor: '#0f172a',
   icons: {
     icon: '/icons/favicon.png',
     apple: '/icons/apple-icon-180.png',
   },
 }
+
+export const viewport: Viewport = { themeColor: '#0f172a' }
 
 export default function RootLayout({
   children,
