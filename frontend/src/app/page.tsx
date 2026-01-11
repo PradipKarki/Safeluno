@@ -1,5 +1,6 @@
 "use client";
 
+import InstallButton from "@/components/InstallButton";
 import { signIn } from "next-auth/react";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       >
         Sign in
       </button>
+      <InstallButton />
     </main>
   );
 }

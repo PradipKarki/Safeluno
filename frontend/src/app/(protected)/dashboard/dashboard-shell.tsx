@@ -2,8 +2,9 @@
 
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
+import { Session } from "next-auth";
 
-export default function DashboardShell({ children, session }) {
+export default function DashboardShell({ children, session }: { children: React.ReactNode; session: Session }) {
   return (
     <div className="flex h-screen">
       <Sidebar user={session.user} />
